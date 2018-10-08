@@ -22,6 +22,7 @@
         <div class="form-group">
             <label for="email">Email</label>
             <input id="email" name="email" class="form-control">
+            <span id="hint"></span>
         </div>
         <div class="form-group">
             <label for="username">Username</label>
@@ -31,12 +32,39 @@
             <label for="password">Password</label>
             <input id="password" name="password" type="password" class="form-control">
         </div>
-        <button type="submit" class="btn btn-success btn-block">Sign up</button>
+        <button id="signUp" type="submit" class="btn btn-success btn-block">Sign up</button>
     </form>
 </main>
 <footer class="jumbotron"></footer>
 <script src="assets/scripts/jquery-3.3.1.min.js"></script>
 <script src="assets/bootstrap/js/bootstrap.js"></script>
 <script src="assets/scripts/global.js"></script>
+<script>
+    $(function () {
+        $('#email').on('blur', function () {
+            var email = $(this).val();
+            var signUpBtn = $('#signUp');
+            $.ajax({
+                url: 'user',
+                type: 'post',
+                data: {'email': email, 'action': 'checkEmail'},
+                dataType: 'json',
+                success: function (data) {
+                    if (data.emailExisted) {
+                        $('#hint').text("Email is Existed!").css('color', '#900');
+                        signUpBtn.prop('disabled', true);
+                    } else {
+                        $('#hint').text("Email is not Exist!").css('color', '#090');
+                        signUpBtn.prop('disabled', false);
+                    }
+                },
+                error: function (a, b, c) {
+                    console.log((a + ', ' + b + ',' + c));
+                }
+            });
+        });
+    })
+    ;
+</script>
 </body>
 </html>
