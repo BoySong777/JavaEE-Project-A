@@ -22,7 +22,7 @@
         <div class="form-group">
             <label for="email">Email</label>
             <input id="email" name="email" class="form-control">
-            <span id="hint"></span>
+            <span id="hint">${requestScope.message}</span>
         </div>
         <div class="form-group">
             <label for="username">Username</label>
@@ -59,12 +59,11 @@
                     }
                 },
                 error: function (a, b, c) {
-                    console.log((a + ', ' + b + ',' + c));
+                    console.log((a + ', ' + b + ', ' + c));
                 }
             });
         });
-    })
-    ;
+    });
 </script>
 </body>
 </html>
