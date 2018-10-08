@@ -16,23 +16,8 @@
 <nav id="nav" class="navbar navbar-inverse"></nav>
 <header class="jumbotron"></header>
 <main class="container">
-    <h1>Sign up</h1>
-    <form class="col-md-4 col-md-offset-4" action="user" method="post">
-        <input type="hidden" name="action" value="signUp">
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input id="email" name="email" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input id="username" name="username" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input id="password" name="password" type="password" class="form-control">
-        </div>
-        <button type="submit" class="btn btn-success btn-block">Sign up</button>
-    </form>
+    <h1>home</h1>
+    ${sessionScope.user.username}
 </main>
 <footer class="jumbotron"></footer>
 <script src="assets/scripts/jquery-3.3.1.min.js"></script>

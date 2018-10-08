@@ -16,22 +16,19 @@
 <nav id="nav" class="navbar navbar-inverse"></nav>
 <header class="jumbotron"></header>
 <main class="container">
-    <h1>Sign up</h1>
-    <form class="col-md-4 col-md-offset-4" action="user" method="post">
-        <input type="hidden" name="action" value="signUp">
+    <h1>Sign in</h1>
+    <form class="col-md-offset-4 col-md-4" action="user" method="post">
+        <input type="hidden" name="action" value="signIn">
         <div class="form-group">
             <label for="email">Email</label>
-            <input id="email" name="email" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input id="username" name="username" class="form-control">
+            <input id="email" class="form-control" name="email" value="tom@tom.com">
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input id="password" name="password" type="password" class="form-control">
+            <input id="password" type="password" class="form-control" name="password" value="123">
         </div>
-        <button type="submit" class="btn btn-success btn-block">Sign up</button>
+        <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+        ${requestScope.message}
     </form>
 </main>
 <footer class="jumbotron"></footer>
