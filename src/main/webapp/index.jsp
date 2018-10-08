@@ -9,19 +9,11 @@
     <title>index page</title>
     <style>
         @import "assets/bootstrap/css/bootstrap.css";
+        @import "assets/styles/global.css";
 
         article {
             background: #ddd;
             height: 300px;
-        }
-
-        footer.jumbotron {
-            margin-bottom: 0;
-            margin-top: 30px;
-        }
-
-        #nav {
-            margin-bottom: 0;
         }
     </style>
 </head>

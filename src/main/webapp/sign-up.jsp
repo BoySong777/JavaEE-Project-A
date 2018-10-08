@@ -9,27 +9,31 @@
     <title>index page</title>
     <style>
         @import "assets/bootstrap/css/bootstrap.css";
-
-        article {
-            background: #ddd;
-            height: 300px;
-        }
-
-        footer.jumbotron {
-            margin-bottom: 0;
-            margin-top: 30px;
-        }
-
-        #nav {
-            margin-bottom: 0;
-        }
+        @import "assets/styles/global.css";
     </style>
 </head>
 <body>
 <nav id="nav" class="navbar navbar-inverse"></nav>
 <header class="jumbotron"></header>
 <main class="container">
-    Sign up
+    <section class="col-md-4 col-md-offset-4">
+        <form action="user" method="post">
+            <input type="hidden" name="action" value="signUp">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input id="email" name="email" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input id="username" name="username" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Sign up</button>
+        </form>
+    </section>
 </main>
 <footer class="jumbotron"></footer>
 <script src="assets/scripts/jquery-3.3.1.min.js"></script>
