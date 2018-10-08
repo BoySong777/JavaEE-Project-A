@@ -27,9 +27,17 @@ public class UserAction extends HttpServlet {
             case "signIn":
                 signIn(req, resp);
                 break;
+            case "signOut":
+                signOut(req, resp);
+                break;
             default:
                 break;
         }
+    }
+
+    private void signOut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getSession().invalidate();
+        resp.sendRedirect("index.jsp");
     }
 
     private void signIn(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
