@@ -29,23 +29,7 @@
 <nav id="nav" class="navbar navbar-inverse"></nav>
 <header class="jumbotron"></header>
 <main class="container">
-    <div class="row">
-        <section class="col-md-4">
-            <article>
-
-            </article>
-        </section>
-        <section class="col-md-4">
-            <article>
-
-            </article>
-        </section>
-        <section class="col-md-4">
-            <article>
-
-            </article>
-        </section>
-    </div>
+    Sign up
 </main>
 <footer class="jumbotron"></footer>
 <script src="assets/scripts/jquery-3.3.1.min.js"></script>
