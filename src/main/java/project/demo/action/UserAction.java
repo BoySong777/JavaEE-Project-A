@@ -131,7 +131,7 @@ public class UserAction extends HttpServlet {
                             }
                             break;
                         case "username":
-                            username = fileItem.getString();
+                            username = fileItem.getString("UTF-8");
                             break;
                         case "password":
                             password = fileItem.getString();
@@ -145,7 +145,7 @@ public class UserAction extends HttpServlet {
                     // fileItem 是上传的文件
                     avatar = fileItem.getName();
                     // 保存到服务器
-                    File file = new File("D:/" + fileItem.getName());
+                    File file = new File(servletContext.getRealPath("/avatar") + "/" + fileItem.getName());
                     fileItem.write(file);
                 }
             }
