@@ -3,18 +3,44 @@
 -- PART I
 
 -- 1. 查找部门 30 中员工的详细信息
+select *
+from EMP
+where DEPTNO = 30;
 
 -- 2. 找出从事 clerk 工作的员工的编号、姓名、部门号
+select EMPNO, ENAME, DEPTNO
+from EMP
+where job = 'CLERK';
 
 -- 3. 检索出奖金多于基本工资的员工信息
+select *
+from EMP
+where comm > sal;
 
 -- 4. 检索出奖金多于基本工资 30% 员工信息
+select *
+from EMP
+where comm > sal * 0.3;
 
--- 5. 希望看到10部门的经理或者 20 部门的职员 clerk 的信息
+-- 5. 希望看到 10 部门的经理 manager 或者 20 部门的职员 clerk 的信息
+select *
+from EMP
+where ((DEPTNO = 10 and job = 'MANAGER')or((DEPTNO = 20) and (job = 'CLERK')));
 
--- 6. 找出 10 部门的经理、20 部门的职员或者既不是经理也不是职员但是高于 2000 元的员工信息
+-- 6. 找出 10 部门的经理、20 部门的职员或者既不是经理也不是职员但是基本工资高于 2000 元的员工信息
+select *
+from EMP
+where (
+          (DEPTNO = 10 and job = 'MANAGER')
+            or
+          ((DEPTNO = 20) and (job = 'CLERK'))
+            or ((JOB <> 'MANAGER')and(JOB <> 'CLERK') and(SAL > 2000))
+          );
 
 -- 7. 找出获得奖金的员工的工作
+select *
+from EMP
+where comm > 0;
 
 -- 8. 找出奖金少于100或者没有获得奖金的员工的信息
 
