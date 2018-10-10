@@ -150,12 +150,14 @@ public class UserAction extends HttpServlet {
 //                    fileItem.getSize(); // size
 
                     String originName = fileItem.getName();
-                    String extension = originName.substring(originName.lastIndexOf("."));
-                    String fileName = System.nanoTime() + extension;
-                    avatar = fileName;
-                    // 保存到服务器
-                    File file = new File(servletContext.getRealPath("/avatar") + "/" + fileName);
-                    fileItem.write(file);
+                    if (!originName.isEmpty()) {
+                        String extension = originName.substring(originName.lastIndexOf("."));
+                        String fileName = System.nanoTime() + extension;
+                        avatar = fileName;
+                        // 保存到服务器
+                        File file = new File(servletContext.getRealPath("/avatar") + "/" + fileName);
+                        fileItem.write(file);
+                    }
                 }
             }
         } catch (Exception e) {
