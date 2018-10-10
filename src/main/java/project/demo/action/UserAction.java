@@ -71,6 +71,7 @@ public class UserAction extends HttpServlet {
                         resultSet.getInt("id"),
                         resultSet.getString("email"),
                         resultSet.getString("username"),
+                        resultSet.getString("password"),
                         resultSet.getString("avatar")
                 );
             }
@@ -97,6 +98,7 @@ public class UserAction extends HttpServlet {
             if (strongPasswordEncryptor.checkPassword(password, user.getPassword())) {
                 req.getSession().setAttribute("user", user);
                 resp.sendRedirect("home.jsp");
+                return;
             }
         }
         req.setAttribute("message", "Invalid Email or password.");
@@ -143,9 +145,16 @@ public class UserAction extends HttpServlet {
                     }
                 } else {
                     // fileItem 是上传的文件
-                    avatar = fileItem.getName();
+                    // TODO: 10/10/2018
+//                    fileItem.getContentType(); // Image/gif
+//                    fileItem.getSize(); // size
+
+                    String originName = fileItem.getName();
+                    String extension = originName.substring(originName.lastIndexOf("."));
+                    String fileName = System.nanoTime() + extension;
+                    avatar = fileName;
                     // 保存到服务器
-                    File file = new File(servletContext.getRealPath("/avatar") + "/" + fileItem.getName());
+                    File file = new File(servletContext.getRealPath("/avatar") + "/" + fileName);
                     fileItem.write(file);
                 }
             }

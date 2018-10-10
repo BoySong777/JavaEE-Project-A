@@ -9,6 +9,10 @@
     <style>
         @import "assets/bootstrap/css/bootstrap.css";
         @import "assets/styles/global.css";
+
+        #avatar {
+            height: 25px;
+        }
     </style>
 </head>
 <body>
@@ -17,6 +21,7 @@
 <header class="jumbotron"></header>
 <main class="container">
     <h1>home</h1>
+    <img class="img-rounded" id="avatar" src="avatar/${sessionScope.user.avatar}" alt="${sessionScope.user.username}">
     ${sessionScope.user.username}
 </main>
 <footer class="jumbotron"></footer>
