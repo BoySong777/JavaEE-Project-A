@@ -1,5 +1,8 @@
 -- SQL 练习题
 
+-- 工资 = 基本工资 + 奖金  (sal + comm) nvl (MySQL ifnull)
+select sal, comm, sal + comm
+from EMP;
 -- PART I
 
 -- 1. 查找部门 30 中员工的详细信息
