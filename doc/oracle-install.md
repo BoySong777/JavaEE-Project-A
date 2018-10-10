@@ -4,7 +4,7 @@
 
 > 目录不含空格和中文
 
-2. 进入 database，执行 setup.exe
+2. 进入 database 目录（size: 2.12GB），执行 setup.exe
 
 3. Installation Option
     - Email 置空
