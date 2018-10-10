@@ -10,7 +10,8 @@ create table db_a.user (
   username varchar(255) not null
   comment 'username NN',
   password varchar(255) not null
-  comment 'password NN'
+  comment 'password NN',
+  avatar varchar(255) default 'default.png' comment 'avatar'
 )
   comment 'user table';
 
@@ -18,3 +19,5 @@ select *
 from db_a.user;
 
 truncate table db_a.user;
+
+insert into db_a.user(email, username, password) value ('1', '2', '3');
