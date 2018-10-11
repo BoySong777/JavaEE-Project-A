@@ -46,38 +46,96 @@ from EMP
 where comm > 0;
 
 -- 8. 找出奖金少于100或者没有获得奖金的员工的信息
+select *
+from EMP
+where comm < 100
+   or comm is null;
 
--- 9. 查找员工雇佣日期是当月的最后一天雇佣的
+-- 9. 查找员工雇佣日期是当月的最后一天雇佣的 last_day()
+select *
+from EMP
+where HIREDATE = last_day(HIREDATE);
+
+select *
+from EMP;
 
 -- 10. 检索出雇佣年限超过 35 年的员工信息
+select *
+from EMP
+where months_between(current_date, HIREDATE) > 12 * 37;
 
 -- 11. 找出姓名以 A、B、S 开始的员工信息
+select *
+from EMP
+where ENAME like 'A%'
+   or ENAME like 'B%'
+   or ENAME like 'C%';
+
+select *
+from EMP
+where substr(ENAME, 0, 1) in ('A', 'B', 'S');
 
 -- 12. 找到名字长度为 4 个字符的员工信息
+select *
+from EMP
+where length(ENAME) = 4;
 
 -- 13. 名字中不包含 R 字符的员工信息
+select *
+from EMP
+where ENAME not like '%R%';
 
 -- 14. 找出员工名字的前3个字符
+select ENAME, substr(ENAME, 0, 3)
+from EMP;
 
--- 15. 将名字中 A 改为 a
+-- 15. 将名字中 A 改为
+select ENAME, translate(ENAME, 'A', 'a')
+from EMP;
+
+-- DML insert update delete
 
 -- 16. 将员工的雇佣日期拖后10年
+select HIREDATE, add_months(HIREDATE, 12 * 10)
+from EMP;
 
 -- 17. 返回员工的详细信息并按姓名排序
+select *
+from EMP
+order by ENAME;
 
 -- 18. 返回员工的信息并按员工的工作年限降序排列
+select *
+from EMP
+order by HIREDATE;
 
 -- 19. 返回员工的信息并按工作降序、工资升序排列
+select *
+from EMP
+order by JOB desc, (sal + nvl(comm, 0));
 
 -- 20. 返回员工的姓名、雇佣年份和月份，并按月份和雇佣日期排序
+select ENAME, extract(year from HIREDATE), extract(month from HIREDATE), HIREDATE
+from EMP
+order by extract(MONTH from HIREDATE), HIREDATE;
 
 -- 21. 计算员工的日薪，每月按30天
+select round((sal + nvl(COMM, 0) / 30), 2)
+from EMP;
 
 -- 22. 找出2月份雇佣的员工
+select *
+from EMP
+where extract(month from HIREDATE) = 2;
 
 -- 23. 至今为止，员工被雇佣的天数
+select round(current_date - HIREDATE, 0)
+from EMP;
 
 -- 24. 找出姓名中包含 A 的员工信息
+select *
+from EMP
+where ENAME like '%A%';
 
 -- PART II
 
