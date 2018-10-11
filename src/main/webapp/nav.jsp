@@ -43,10 +43,28 @@
                 <li><a href="sign-up.jsp"><span class="glyphicon glyphicon-user"></span> Sign up</a></li>
             </c:if>
             <c:if test="${sessionScope.user ne null}">
-                <li><a href="#"><img id="avatar" class="img-circle" src="avatar/${sessionScope.user.avatar}"> ${sessionScope.user.username}</a></li>
-                <li><a href="user?action=signOut"><span class="glyphicon glyphicon-log-out"></span> Sign out</a></li>
+                <li><a class="pop" href="#" data-placement="bottom" title="header..." data-content="<a href=&quot;user?action=signOut&quot;>Sign out</a>"><img id="avatar" class="img-circle" src="avatar/${sessionScope.user.avatar}"> ${sessionScope.user.username}</a></li>
             </c:if>
         </ul>
     </div><!-- /.navbar-collapse -->
 </div>
 <!-- /.container-fluid -->
+<script>
+    $(function () {
+        $(".pop").popover({ trigger: "manual" , html: true, animation:false})
+            .on("mouseenter", function () {
+                var _this = this;
+                $(this).popover("show");
+                $(".popover").on("mouseleave", function () {
+                    $(_this).popover('hide');
+                });
+            }).on("mouseleave", function () {
+            var _this = this;
+            setTimeout(function () {
+                if (!$(".popover:hover").length) {
+                    $(_this).popover("hide");
+                }
+            }, 300);
+        });
+    });
+</script>
