@@ -11,7 +11,7 @@
         @import "assets/styles/global.css";
 
         #avatar {
-            height: 25px;
+            height: 20px;
         }
     </style>
 </head>
@@ -21,7 +21,7 @@
 <header class="jumbotron"></header>
 <main class="container">
     <h1>home</h1>
-    <img class="img-rounded" id="avatar" src="avatar/${sessionScope.user.avatar}" alt="${sessionScope.user.username}">
+    <img class="img-circle" id="avatar" src="avatar/${sessionScope.user.avatar}" alt="${sessionScope.user.username}">
     ${sessionScope.user.username}
 </main>
 <footer class="jumbotron"></footer>
