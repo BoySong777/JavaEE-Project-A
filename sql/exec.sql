@@ -140,39 +140,117 @@ where ENAME like '%A%';
 -- PART II
 
 -- 1. 返回拥有员工的部门名、部门号
+select d.DEPTNO, d.DNAME
+from EMP e
+       inner join DEPT D on e.DEPTNO = D.DEPTNO
+order by d.DEPTNO;
+
+select *
+from DEPT;
 
 -- 2. 工资多于 scott 的员工信息
+select *
+from EMP
+where sal + nvl(COMM, 0) > (select sal + nvl(comm, 0) from EMP where ENAME = 'SCOTT');
 
 -- 3. 返回员工和所属经理的姓名
+select e1.ENAME, e2.ENAME
+from EMP e1
+       inner join emp e2 on e1.MGR = e2.EMPNO;
+select *
+from EMP;
+
+-- tree query
+select ENAME, EMPNO, MGR, LEVEL
+from EMP
+start with EMPNO = 7839
+connect by prior EMPNO = mgr;
 
 -- 4. 返回雇员的雇佣日期早于其经理雇佣日期的员工及其经理姓名
+select e1.ENAME, e2.ENAME
+from EMP e1
+       inner join EMP e2 on e1.MGR = e2.EMPNO
+where e1.HIREDATE < e2.HIREDATE;
 
 -- 5. 返回员工姓名及其所在的部门名称
+select e.ENAME, d.DNAME
+from EMP e
+       inner join DEPT D on e.DEPTNO = D.DEPTNO;
 
 -- 6. 返回从事 clerk 工作的员工姓名和所在部门名称
+select e.ENAME, d.DNAME
+from EMP e
+       inner join DEPT D on e.DEPTNO = D.DEPTNO
+where e.JOB = 'CLERK';
 
 -- 7. 返回部门号及其本部门的最低工资
+select DEPTNO, min(sal + nvl(comm, 0))
+from EMP
+group by DEPTNO;
 
 -- 8. 返回销售部 sales 所有员工的姓名
+select ENAME
+from EMP e
+       inner join DEPT D on e.DEPTNO = D.DEPTNO
+where d.DNAME = 'SALES';
 
 -- 9. 返回工资多于平均工资的员工
+select *
+from EMP
+where sal + nvl(comm, 0) > (select avg(sal + nvl(comm, 0)) from EMP);
 
 -- 10. 返回与 scott 从事相同工作的员工
+select *
+from EMP
+where JOB = (select JOB from EMP where ENAME = 'SCOTT');
 
--- 11. 返回工资高于30部门所有员工工资水平的员工信息
+-- 11. 返回工资高于30部门所有员工平均工资的员工信息
+select *
+from EMP
+where sal + nvl(comm, 0) >
+      (select avg(sal + nvl(comm, 0)) from emp where deptno = 30);
 
 -- 12. 返回部门号及每个部门的员工总数
+select DEPTNO, count(*)
+from EMP
+group by DEPTNO;
 
 -- 13. 返回员工的姓名、所在部门名及其工资
+select e.ENAME, d.DNAME, (e.sal + nvl(e.COMM, 0))
+from EMP e
+       inner join DEPT D on e.DEPTNO = D.DEPTNO;
 
 -- 14. 返回雇员表中不在同一部门但是从事相同工作的员工信息
+select e1.ENAME, e2.ENAME
+from EMP e1
+       inner join EMP e2 on e1.JOB = e2.JOB and e1.DEPTNO <> e2.DEPTNO;
 
 -- 15. 返回员工的详细信息，包括部门名
+select e.*, d.DNAME
+from EMP e
+       inner join DEPT D on e.DEPTNO = D.DEPTNO;
 
 -- 16. 返回员工工作及其从事此工作的最低工资
+select JOB, min(sal + nvl(comm, 0))
+from EMP
+group by JOB;
 
 -- 17. 返回不同部门经理的最低工资
+select DEPTNO, min(sal + nvl(comm, 0))
+from EMP
+where JOB = 'MANAGER'
+group by DEPTNO;
 
 -- 18. 计算出员工的年薪，并且以年薪排序
+select ENAME, (sal + nvl(comm, 0)) * 12
+from EMP
+order by 2;
 
--- 19. 返回工资处于第4级别的员工的姓名
+-- 19. 返回工资处于第 4 级别的员工的姓名
+select e.ENAME, s.GRADE
+from EMP e
+       inner join SALGRADE s on e.sal between s.LOSAL and s.HISAL;
+
+
+-- MyBatis iBatis
+-- Database
